@@ -70,7 +70,8 @@ class BoletoValidatorWebformHandler extends WebformHandlerBase {
     
     /* Validação do cpf */
     if(!empty($cpf_key) && !empty(trim($data[$cpf_key])) ){
-      $cpf = \Drupal::service('cpf')->digits($data[$cpf_key]);
+      $cpf = preg_replace('/[^0-9]/', '', $data[$cpf_key]); ;
+      //cpf = \Drupal::service('cpf')->digits($data[$cpf_key]);
       if(!!$this->validaCPF($cpf)) {
           $formState->setErrorByName($cpf_key, 
               $this->t('O número de CPF %cpf não é válido', ['%cpf' => $data[$cpf_key]]));
