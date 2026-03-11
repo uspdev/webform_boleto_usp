@@ -31,7 +31,7 @@ class Gera {
             if( empty(trim($data[$element["#boletousp_cpfCnpj"]]))) {
                 $output['cpfCnpj'] = '99999999999';
             } else {
-                $output['cpfCnpj'] = \Drupal::service('cpf')->digits($data[$element["#boletousp_cpfCnpj"]]);
+                $output['cpfCnpj'] = preg_replace('/[^0-9]/', '', $data[$element["#boletousp_cpfCnpj"]]);
             }
             
         }
